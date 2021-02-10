@@ -17,7 +17,7 @@ namespace SmartControl.Services
         public SmartHubClient()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-            client = new RestClient("http://192.168.1.112:45456/api/");
+            client = new RestClient("http://192.168.43.173:45455/api/");
         }
 
         public async Task<IEnumerable<Device>> GetDevicesAsync()

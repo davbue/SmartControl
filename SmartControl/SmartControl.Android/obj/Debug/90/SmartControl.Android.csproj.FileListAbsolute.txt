@@ -508,3 +508,4 @@ C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\D
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_gate_purple.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_room_purple.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_title_purple.png
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_pin_purple.png

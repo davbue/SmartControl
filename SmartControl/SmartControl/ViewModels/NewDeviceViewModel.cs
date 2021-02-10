@@ -11,6 +11,7 @@ namespace SmartControl.ViewModels
     public class NewDeviceViewModel : BaseViewModel
     {
         private string deviceName;
+        private string pin;
         private List<string> deviceTypeNames;
         private List<string> roomNames;
         private List<string> gatewayIds;
@@ -66,6 +67,12 @@ namespace SmartControl.ViewModels
             set => SetProperty(ref deviceName, value);
         }
 
+        public string Pin
+        {
+            get => pin;
+            set => SetProperty(ref pin, value);
+        }
+
         public string SelectedDeviceTypeName
         {
             get => selectedDeviceTypeName;
@@ -117,7 +124,8 @@ namespace SmartControl.ViewModels
                 DeviceName = DeviceName,
                 Enabled = false,
                 GatewayId = SelectedGatewayId,
-                DeviceTypeId = DeviceTypes.Single(dt => dt.DeviceTypeName == SelectedDeviceTypeName).DeviceTypeID
+                DeviceTypeId = DeviceTypes.Single(dt => dt.DeviceTypeName == SelectedDeviceTypeName).DeviceTypeID,
+                Pin = Convert.ToInt32(Pin)
             };
 
             await SmartHubClient.CreateDeviceAsync(newDevice);

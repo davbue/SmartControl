@@ -33,6 +33,12 @@
                     <Picker IsEnabled="{Binding GatewayPickerEnabled}" WidthRequest="300" Title="Select a Gateway" ItemsSource="{Binding GatewayIds}" SelectedItem="{Binding SelectedGatewayId, Mode=TwoWay}" />
                 </StackLayout>
             </Frame>
+            <Frame Padding="4" CornerRadius="8" Margin="0,30,0,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="icon_pin_purple.png" HeightRequest="25" Margin="10,0,0,0"/>
+                    <Entry Text="{Binding Pin, Mode=TwoWay}" Placeholder="Pin" FontSize="Medium" WidthRequest="300"/>
+                </StackLayout>
+            </Frame>
             <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
                 <Button Text="Cancel" CornerRadius="8" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" CornerRadius="8" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
