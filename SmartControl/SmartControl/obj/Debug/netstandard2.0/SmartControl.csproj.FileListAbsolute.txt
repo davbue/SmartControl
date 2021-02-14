@@ -6,10 +6,7 @@ C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\net
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\AboutPage.xaml.g.cs
-C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\ItemDetailPage.xaml.g.cs
-C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\ItemsPage.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
-C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\NewItemPage.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\SmartControl.AssemblyInfoInputs.cache
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\SmartControl.AssemblyInfo.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\SmartControl.csproj.CoreCompileInputs.cache
@@ -21,3 +18,6 @@ C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\net
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\DeviceDetailPage.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\NewDevicePage.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\HomePage.xaml.g.cs
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\EditDevicePage.xaml.g.cs
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\NewRoomPage.xaml.g.cs
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\SensorDetailPage.xaml.g.cs

@@ -10,7 +10,6 @@ namespace SmartControl.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         public ISmartHubClient SmartHubClient => DependencyService.Get<ISmartHubClient>();
 

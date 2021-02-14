@@ -11,10 +11,11 @@ namespace SmartControl
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
             Routing.RegisterRoute(nameof(NewDevicePage), typeof(NewDevicePage));
+            Routing.RegisterRoute(nameof(NewRoomPage), typeof(NewRoomPage));
+            Routing.RegisterRoute(nameof(EditDevicePage), typeof(EditDevicePage));
             Routing.RegisterRoute(nameof(DeviceDetailPage), typeof(DeviceDetailPage));
+            Routing.RegisterRoute(nameof(SensorDetailPage), typeof(SensorDetailPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

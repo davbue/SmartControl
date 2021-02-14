@@ -8,41 +8,77 @@
              x:Name="BrowseHomePage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddDeviceCommand}" />
+        <ToolbarItem Text="Add" Command="{Binding AddRoomCommand}" />
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <RefreshView x:DataType="local:HomeViewModel" Command="{Binding LoadDevicesCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="DevicesListView" ItemsSource="{Binding Devices}" SelectionMode="None" Margin="5">
+    <RefreshView x:DataType="local:HomeViewModel" Command="{Binding LoadRoomsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="RoomsListView" ItemsSource="{Binding Rooms}" SelectionMode="None" Margin="5">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="0" Padding="0">
-                        <Frame Margin="1" Padding="10">
-                            <Grid x:DataType="model:Device" Background="white">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Image HeightRequest="40" Source="{Binding DeviceType.Icon}" Grid.Column="0"/>
-                                <StackLayout Margin="5,0,0,0" Grid.Column="1">
-                                    <Label Text="{Binding DeviceName}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16"/>
-                                    <Label Text="{Binding Room.RoomName}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13"/>
-                                </StackLayout>
-                                <!--<Switch Grid.Column="2" ThumbColor="LightGray" x:Name="DevicePower" Toggled="DevicePower_Toggled"/>-->
+                    <Frame Margin="0" Padding="0" BackgroundColor="Transparent">
+                        <Frame x:Name="RoomFrame" CornerRadius="8" Margin="1" Padding="10" Background="{StaticResource PrimaryBrush}">
+                            <Grid x:DataType="model:Room">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding RoomName}" Grid.Row="0" TextColor="White" FontSize="20"/>
+                                <ImageButton Clicked="ExpandBtn_Clicked" Source="icon_caret_white.png" Grid.Row="0" HorizontalOptions="End" BackgroundColor="Transparent" HeightRequest="25"/>
+                                <CollectionView IsVisible="{Binding SensorsVisible}" Grid.Row="1" x:DataType="model:Room" ItemsSource="{Binding Sensors}" SelectionMode="None"  HeightRequest="40">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Margin="0" Padding="0" BackgroundColor="Transparent">
+                                                <Frame CornerRadius="8" Margin="0" Padding="10" BackgroundColor="Black" Opacity="0.6" WidthRequest="60">
+                                                    <Grid x:DataType="model:Device">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Source="{Binding DeviceType.Icon}" Grid.Column="0"/>
 
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:DevicesViewModel}}, Path=DeviceTapped}"		
-                                CommandParameter="{Binding .}">
-                                    </TapGestureRecognizer>
-                                </Grid.GestureRecognizers>
+                                                        <Label Text="{Binding LastValue}" TextColor="White" Grid.Column="1"/>
+                                                    </Grid>
+                                                </Frame>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <CollectionView IsVisible="{Binding ControlsVisible}" Grid.Row="2" x:DataType="model:Room" Margin="0,5,0,5" x:Name="DevicesListView" ItemsSource="{Binding Controls}" SelectionMode="None" HeightRequest="220">
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="7" />
+                                    </CollectionView.ItemsLayout>
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame Margin="0" Padding="0" BackgroundColor="Transparent">
+                                                <Frame Margin="1" Padding="10" BackgroundColor="White" CornerRadius="5">
+                                                    <Grid x:DataType="model:Device" >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image HeightRequest="40" Source="{Binding DeviceType.Icon}" Grid.Column="0"/>
+                                                        <Label VerticalOptions="Center" Text="{Binding DeviceName}" Grid.Column="1" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="18"/>
+                                                        <Grid.GestureRecognizers>
+                                                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type local:HomeViewModel}}, Path=DeviceTapped}" CommandParameter="{Binding .}">
+                                                            </TapGestureRecognizer>
+                                                        </Grid.GestureRecognizers>
+                                                    </Grid>
+                                                </Frame>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
                             </Grid>
                         </Frame>
                     </Frame>

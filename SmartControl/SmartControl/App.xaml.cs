@@ -13,7 +13,6 @@ namespace SmartControl
         {
             Device.SetFlags(new string[] { "Brush_Experimental" });
             InitializeComponent();
-            DependencyService.Register<MockDataStore>();
             DependencyService.Register<SmartHubClient>();
             MainPage = new AppShell();
             

@@ -17,7 +17,7 @@ namespace SmartControl.Services
         public SmartHubClient()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-            client = new RestClient("http://192.168.43.173:45455/api/");
+            client = new RestClient("http://192.168.1.112:45455/api/");
         }
 
         public async Task<IEnumerable<Device>> GetDevicesAsync()
@@ -98,7 +98,15 @@ namespace SmartControl.Services
         {
             RestRequest request = new RestRequest($"GetLastValue/{DeviceId}", Method.GET);
             var response = await client.ExecuteAsync(request);
-            float value = (float)Convert.ToDouble(response.Content);
+            float value = 0;
+            try
+            {
+                value = (float)Convert.ToDouble(response.Content);
+            }
+            catch
+            {
+                Console.WriteLine("No Values");
+            }
             return value;
         }
 
@@ -107,6 +115,22 @@ namespace SmartControl.Services
             RestRequest request = new RestRequest("Devices", Method.POST);
             request.AddHeader("Content-Type", "application/json; charset=utf-8");
             request.AddJsonBody(device);
+            var response = await client.ExecuteAsync(request);
+        }
+
+        public async Task CreateRoomAsync(Room room)
+        {
+            RestRequest request = new RestRequest("Rooms", Method.POST);
+            request.AddHeader("Content-Type", "application/json; charset=utf-8");
+            request.AddJsonBody(room);
+            var response = await client.ExecuteAsync(request);
+        }
+
+        public async Task CreateGatewayAsync(Gateway gateway)
+        {
+            RestRequest request = new RestRequest("Gateways", Method.POST);
+            request.AddHeader("Content-Type", "application/json; charset=utf-8");
+            request.AddJsonBody(gateway);
             var response = await client.ExecuteAsync(request);
         }
 
@@ -123,6 +147,11 @@ namespace SmartControl.Services
             RestRequest request = new RestRequest("PostDataEntity", Method.POST);
             request.AddHeader("Content-Type", "application/json; charset=utf-8");
             request.AddJsonBody(dataEntity);
+            var response = await client.ExecuteAsync(request);
+        }
+        public async Task DeleteDeviceAsync(string deviceId)
+        {
+            RestRequest request = new RestRequest($"Devices/{deviceId}", Method.DELETE);
             var response = await client.ExecuteAsync(request);
         }
     }

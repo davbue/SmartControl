@@ -15,7 +15,10 @@ namespace SmartControl.Services
         Task<Device> GetDeviceByIdAsync(string deviceId);
         Task PostDataAsync(DataEntity dataEntity);
         Task CreateDeviceAsync(Device device);
+        Task CreateRoomAsync(Room room);
+        Task CreateGatewayAsync(Gateway gateway);
         Task<float> GetLastValue(string DeviceId);
         Task PutDeviceAsync(Device device);
+        Task DeleteDeviceAsync(string deviceId);
     }
 }

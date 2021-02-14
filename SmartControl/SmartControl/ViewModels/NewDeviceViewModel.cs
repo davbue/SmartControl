@@ -53,7 +53,8 @@ namespace SmartControl.ViewModels
             return !String.IsNullOrWhiteSpace(deviceName)
                 && !String.IsNullOrWhiteSpace(selectedDeviceTypeName)
                 && !String.IsNullOrWhiteSpace(selectedRoomName)
-                && !String.IsNullOrWhiteSpace(selectedGatewayId);
+                && !String.IsNullOrWhiteSpace(selectedGatewayId)
+                && !String.IsNullOrWhiteSpace(Pin);
 
         }
         public bool GatewayPickerEnabled
@@ -125,7 +126,7 @@ namespace SmartControl.ViewModels
                 Enabled = false,
                 GatewayId = SelectedGatewayId,
                 DeviceTypeId = DeviceTypes.Single(dt => dt.DeviceTypeName == SelectedDeviceTypeName).DeviceTypeID,
-                Pin = Convert.ToInt32(Pin)
+                Pins = Pin
             };
 
             await SmartHubClient.CreateDeviceAsync(newDevice);

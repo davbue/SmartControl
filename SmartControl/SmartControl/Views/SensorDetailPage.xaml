@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmartControl.Views.SensorDetailPage"
+             Title="{Binding DeviceId}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Command="{Binding EditDeviceCommand}" />
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding DeviceName}" FontSize="Large" HorizontalOptions="Center" Margin="0"/>
+            <Label Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding RoomName}" FontSize="Small" HorizontalOptions="Center" Margin="0,0,0,10"/>
+            <Frame IsVisible="{Binding Disabled}" Margin="0" Grid.Row="2" BackgroundColor="LightGray" CornerRadius="100" HeightRequest="200" WidthRequest="200" Padding="30" Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalTextAlignment="Center" Text="{Binding DeviceValue}" Grid.Column="0" TextColor="Black" FontSize="40" VerticalOptions="Center"/>
+                    <Image Grid.Column="1" HeightRequest="50" WidthRequest="50" Source="{Binding IconSource}"/>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding OnOffCommand}">
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Frame IsVisible="{Binding Enabled}" Margin="0" Grid.Row="2" Background="{StaticResource PrimaryBrush}" CornerRadius="100" HeightRequest="200" WidthRequest="200" Padding="30" Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label HorizontalTextAlignment="Center" Text="{Binding DeviceValue}" Grid.Column="0" TextColor="White" FontSize="40" VerticalOptions="Center"/>
+                    <Image Grid.Column="1" HeightRequest="50" WidthRequest="50" Source="{Binding IconSource}"/>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding OnOffCommand}"		
+                                CommandParameter="{Binding .}">
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+            <Label Grid.Row="3" Grid.ColumnSpan="3" Text="ON" FontSize="Small" HorizontalOptions="Center" Margin="0,0,0,10"/>
+        </Grid>
+    </Grid>
+    
+    
+</ContentPage>

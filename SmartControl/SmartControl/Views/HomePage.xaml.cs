@@ -28,5 +28,10 @@ namespace SmartControl.Views
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
+
+        private void ExpandBtn_Clicked(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

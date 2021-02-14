@@ -13,7 +13,8 @@ namespace SmartControl.Models
         public bool Enabled { get; set; }
         public string GatewayId { get; set; }
         public long DeviceTypeId { get; set; }
-        public long Pin { get; set; }
+        public string Pins { get; set; }
+        public float LastValue { get; set; }
 
         //Navigation Properties
         public Gateway Gateway { get; set; }

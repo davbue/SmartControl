@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SmartControl.Views.NewRoomPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New Device"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Margin="0,100,0,10" Text="New Room" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" TextColor="Black"/>
+            <Frame Padding="4" CornerRadius="8" Margin="0,30,0,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="icon_title_purple" HeightRequest="25" Margin="10,0,0,0"/>
+                    <Entry Text="{Binding RoomName, Mode=TwoWay}" Placeholder="Room Name" FontSize="Medium" WidthRequest="300"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+                <Button Text="Cancel" CornerRadius="8" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" CornerRadius="8" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

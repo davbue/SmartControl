@@ -1,4 +1,5 @@
 ﻿using SmartControl.Models;
+using SmartControl.Views;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -20,9 +21,11 @@ namespace SmartControl.ViewModels
         public Models.Device Device { get; set; }
         public string Id { get; set; }
         public Command OnOffCommand { get; }
+        public Command EditDeviceCommand { get; }
         public DeviceDetailViewModel()
         {
             OnOffCommand = new Command(OnDeviceToggled);
+            EditDeviceCommand = new Command(OnEditClicked);
         }
         public string DeviceName
         {
@@ -123,7 +126,7 @@ namespace SmartControl.ViewModels
                 {
                     IconSource = Device.DeviceType.Icon;
                 }
-                if(Device.DeviceType.Unit == null)
+                if(Device.DeviceType.DeviceTypeName == "Relais" || Device.DeviceType.Sensor )
                 {
                     SliderVisibility = false;
                 }
@@ -139,6 +142,12 @@ namespace SmartControl.ViewModels
             {
                 Debug.WriteLine("Failed to Load Item");
             }
+        }
+
+        async void OnEditClicked()
+        {
+            // This will push the ItemDetailPage onto the navigation stack
+            await Shell.Current.GoToAsync($"{nameof(EditDevicePage)}?{nameof(EditDeviceViewModel.DeviceId)}={Device.DeviceId}");
         }
     }
 }

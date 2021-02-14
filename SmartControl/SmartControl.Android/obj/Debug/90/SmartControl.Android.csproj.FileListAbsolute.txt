@@ -500,7 +500,6 @@ C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\D
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_service.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_temperature.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_edit.png
-C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_power_off.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_power_on.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_lightbulb_white.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_lightbulb.png
@@ -509,3 +508,9 @@ C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\D
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_room_purple.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_title_purple.png
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_pin_purple.png
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_temperature_white.png
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_on_blue.png
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_on.png
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_caret_white.png
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_power_white.png
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl.Android\obj\Debug\90\res\drawable\icon_delete_red.png

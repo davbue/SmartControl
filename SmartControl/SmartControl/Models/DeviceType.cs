@@ -11,6 +11,7 @@ namespace SmartControl.Models
         public string DeviceTypeName { get; set; }
         public string Icon { get; set; }
         public string Unit { get; set; }
+        public bool Sensor { get; set; }
 
         //Navigation Properties
         public ICollection<Device> Devices { get; set; }

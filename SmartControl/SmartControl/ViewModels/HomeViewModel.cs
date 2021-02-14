@@ -3,42 +3,71 @@ using SmartControl.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.IO;
 
 namespace SmartControl.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
         private Models.Device _selectedDevice;
-
-        public ObservableCollection<Models.Device> Devices { get; }
-        public Command LoadDevicesCommand { get; }
-        public Command AddDeviceCommand { get; }
+        public ObservableCollection<Room> Rooms { get; }
+        public Command LoadRoomsCommand { get; }
+        public Command AddRoomCommand { get; }
         public Command<Models.Device> DeviceTapped { get; }
+        public Command RoomTapped { get; }
 
         public HomeViewModel()
         {
-            Title = "Devices";
-            Devices = new ObservableCollection<Models.Device>();
-            LoadDevicesCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            Title = "Home";
+            Rooms = new ObservableCollection<Room>();
+            LoadRoomsCommand = new Command(async () => await ExecuteLoadRoomsCommand());
 
             DeviceTapped = new Command<Models.Device>(OnDeviceSelected);
+            RoomTapped = new Command(OnRoomTapped);
 
-            AddDeviceCommand = new Command(OnAddDevice);
+            AddRoomCommand = new Command(OnAddRoom);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadRoomsCommand()
         {
             IsBusy = true;
 
             try
             {
-                Devices.Clear();
+                Rooms.Clear();
+                var rooms = await SmartHubClient.GetRoomsAsync();
                 var devices = await SmartHubClient.GetDevicesAsync();
-                foreach (var device in devices)
+                foreach (var room in rooms)
                 {
-                    Devices.Add(device);
+                    var roomDevices = devices.Where(d => d.Gateway.RoomId == room.RoomId);
+                    room.Controls = roomDevices.Where(d => d.DeviceType.Sensor == false).ToList();
+                    room.Sensors = roomDevices.Where(d => d.DeviceType.Sensor == true).ToList();
+                    if (room.Controls.Any())
+                    {
+                        room.ControlsVisible = true;
+                    }
+                    else
+                    {
+                        room.ControlsVisible = false;
+                    }
+
+                    if (room.Sensors.Any())
+                    {
+                        room.SensorsVisible = true;
+                    }
+                    else
+                    {
+                        room.SensorsVisible = false;
+                    }
+                    foreach (Models.Device device in room.Sensors)
+                    {
+                        device.LastValue = await SmartHubClient.GetLastValue(device.DeviceId);
+                        device.DeviceType.Icon = $"{Path.GetFileNameWithoutExtension(device.DeviceType.Icon)}_white.png";
+                    }
+                    Rooms.Add(room);
                 }
             }
             catch (Exception ex)
@@ -67,11 +96,15 @@ namespace SmartControl.ViewModels
             }
         }
 
-        private async void OnAddDevice(object obj)
+        private async void OnAddRoom(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewDevicePage));
+            await Shell.Current.GoToAsync(nameof(NewRoomPage));
         }
 
+        async void OnRoomTapped()
+        {
+            
+        }
         async void OnDeviceSelected(Models.Device device)
         {
             if (device == null)

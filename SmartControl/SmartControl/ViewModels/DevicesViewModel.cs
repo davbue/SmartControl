@@ -78,8 +78,14 @@ namespace SmartControl.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(DeviceDetailPage)}?{nameof(DeviceDetailViewModel.DeviceId)}={device.DeviceId}");
-            var check = $"{nameof(DeviceDetailPage)}?{nameof(DeviceDetailViewModel.DeviceId)}={device.DeviceId}";
+            if (device.DeviceType.Sensor)
+            {
+                await Shell.Current.GoToAsync($"{nameof(SensorDetailPage)}?{nameof(SensorDetailViewModel.DeviceId)}={device.DeviceId}");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"{nameof(DeviceDetailPage)}?{nameof(DeviceDetailViewModel.DeviceId)}={device.DeviceId}");
+            }
         }
     }
 }

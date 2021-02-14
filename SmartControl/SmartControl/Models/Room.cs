@@ -12,5 +12,9 @@ namespace SmartControl.Models
 
         //Navigation Properties
         public ICollection<Gateway> Gateways { get; set; }
+        public ICollection<Device> Controls { get; set; }
+        public ICollection<Device> Sensors { get; set; }
+        public bool ControlsVisible { get; set; }
+        public bool SensorsVisible { get; set; }
     }
 }
