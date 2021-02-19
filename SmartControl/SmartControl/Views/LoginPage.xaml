@@ -7,8 +7,17 @@
              x:Class="SmartControl.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Margin="0,100,0,10" Text="New Gateway" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold" TextColor="Black"/>
+            <Frame Padding="4" CornerRadius="8" Margin="0,30,0,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="icon_title_purple" HeightRequest="25" Margin="10,0,0,0"/>
+                    <Entry Text="{Binding ConnectionString, Mode=TwoWay}" Placeholder="API Connection" FontSize="Medium" WidthRequest="300"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Horizontal" Margin="0,30,0,0">
+                <Button Text="Save" CornerRadius="8" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

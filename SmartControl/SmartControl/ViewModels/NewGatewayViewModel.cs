@@ -12,6 +12,9 @@ namespace SmartControl.ViewModels
     {
         private string gatewayId;
         private string selectedRoomName;
+        private List<string> roomNames;
+
+        public List<Room> Rooms { get; set; }
 
         public NewGatewayViewModel()
         {
@@ -19,11 +22,13 @@ namespace SmartControl.ViewModels
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
+            LoadRooms();
         }
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(selectedRoomName);
+            return !String.IsNullOrWhiteSpace(selectedRoomName)
+                && !String.IsNullOrWhiteSpace(gatewayId);
 
         }
 
@@ -38,6 +43,11 @@ namespace SmartControl.ViewModels
             get => selectedRoomName;
             set => SetProperty(ref selectedRoomName, value);
         }
+        public List<string> RoomNames
+        {
+            get => roomNames;
+            set => SetProperty(ref roomNames, value);
+        }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
@@ -48,13 +58,19 @@ namespace SmartControl.ViewModels
             await Shell.Current.GoToAsync("..");
         }
 
+        public async void LoadRooms()
+        {
+            Rooms = (await SmartHubClient.GetRoomsAsync()).ToList();
+            RoomNames = Rooms.Select(room => room.RoomName).ToList();
+        }
+
         private async void OnSave()
         {
 
             Models.Gateway newGateway = new Models.Gateway()
             {
                 GatewayId = GatewayId,
-                RoomId = Guid.NewGuid().ToString()
+                RoomId = Rooms.Single(r => r.RoomName == selectedRoomName).RoomId
             };
 
             await SmartHubClient.CreateGatewayAsync(newGateway);

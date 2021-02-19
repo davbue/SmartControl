@@ -1,4 +1,5 @@
-﻿using SmartControl.Views;
+﻿using SmartControl.Services;
+using SmartControl.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,17 +9,44 @@ namespace SmartControl.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public Command LoginCommand { get; }
+        private string connectionString;
 
         public LoginViewModel()
         {
-            LoginCommand = new Command(OnLoginClicked);
+            try
+            {
+                ConnectionString = Application.Current.Properties["ConnectionString"].ToString();
+            }
+            catch
+            {
+                Application.Current.Properties["ConnectionString"] = "temp";
+            }
+            
+            SmartHubClient.ConnectionString = ConnectionString;
+            SaveCommand = new Command(OnSave, ValidateSave);
+            this.PropertyChanged +=
+                (_, __) => SaveCommand.ChangeCanExecute();
         }
 
-        private async void OnLoginClicked(object obj)
+        private bool ValidateSave()
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+            return !String.IsNullOrWhiteSpace(connectionString);
+        }
+
+        public string ConnectionString
+        {
+            get => connectionString;
+            set => SetProperty(ref connectionString, value);
+        }
+
+        public Command SaveCommand { get; }
+
+        private async void OnSave()
+        {
+            Application.Current.Properties["ConnectionString"] = ConnectionString;
+            SmartHubClient.ConnectionString = ConnectionString;
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

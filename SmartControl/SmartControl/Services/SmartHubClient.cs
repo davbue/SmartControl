@@ -14,10 +14,20 @@ namespace SmartControl.Services
     class SmartHubClient : ISmartHubClient
     {
         private RestClient client;
+        public string ConnectionString { get; set; }
         public SmartHubClient()
         {
+            try
+            {
+                ConnectionString = Xamarin.Forms.Application.Current.Properties["ConnectionString"].ToString();
+            }
+            catch
+            {
+                Xamarin.Forms.Application.Current.Properties["ConnectionString"] = "temp";
+            }
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-            client = new RestClient("http://192.168.1.112:45455/api/");
+            client = new RestClient($"{ConnectionString}/api/");
+            //client = new RestClient("http://192.168.43.173:45455/api/");
         }
 
         public async Task<IEnumerable<Device>> GetDevicesAsync()
@@ -25,7 +35,7 @@ namespace SmartControl.Services
             //Get Devices
             RestRequest request = new RestRequest("Devices", Method.GET);
             IRestResponse response = await client.ExecuteAsync(request);
-            IEnumerable<Device> devices = JsonConvert.DeserializeObject<List<Device>>(response.Content);
+            IEnumerable<Device> devices = JsonConvert.DeserializeObject<List<Models.Device>>(response.Content);
             foreach(Device device in devices)
             {
                 Device tmpDevice = await FillDevicePropertiesAsync(device);
@@ -41,7 +51,7 @@ namespace SmartControl.Services
             //Get Device
             RestRequest request = new RestRequest($"Devices/{deviceId}", Method.GET);
             IRestResponse response = await client.ExecuteAsync(request);
-            Device device = JsonConvert.DeserializeObject<Device>(response.Content);
+            Models.Device device = JsonConvert.DeserializeObject<Device>(response.Content);
             device = await FillDevicePropertiesAsync(device);
 
             return device;

@@ -21,3 +21,4 @@ C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\net
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\EditDevicePage.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\NewRoomPage.xaml.g.cs
 C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\SensorDetailPage.xaml.g.cs
+C:\Users\davbu\source\repos\SmartControl\SmartControl\SmartControl\obj\Debug\netstandard2.0\Views\NewGatewayPage.xaml.g.cs

@@ -80,20 +80,22 @@ namespace SmartControl.ViewModels
         }
         public void OnDeviceToggled()
         {
-            bool enabled = !Device.Enabled;
-            if (Device.Enabled)
+            if (Device.Gateway.Online)
             {
-                IconSource = Device.DeviceType.Icon;
+                bool enabled = !Device.Enabled;
+                if (Device.Enabled)
+                {
+                    IconSource = Device.DeviceType.Icon;
+                }
+                else
+                {
+                    IconSource = System.IO.Path.GetFileNameWithoutExtension(Device.DeviceType.Icon) + "_white.png";
+                }
+                Enabled = enabled;
+                Disabled = !enabled;
+                Device.Enabled = enabled;
+                SmartHubClient.PutDeviceAsync(Device);
             }
-            else
-            {
-                IconSource = System.IO.Path.GetFileNameWithoutExtension(Device.DeviceType.Icon) + "_white.png";
-            }
-            Enabled = enabled;
-            Disabled = !enabled;
-            Device.Enabled = enabled;
-            SmartHubClient.PutDeviceAsync(Device);
-            
         }
 
         public void ValueChanged(float value)
@@ -118,7 +120,11 @@ namespace SmartControl.ViewModels
                 DeviceName = Device.DeviceName;
                 RoomName = Device.Room.RoomName;
                 IconSource = Device.DeviceType.Icon;
-                if (Device.Enabled)
+                if (Device.Enabled && Device.Gateway.Online)
+                {
+                    Enabled = Device.Enabled;
+                }
+                if (Enabled)
                 {
                     IconSource = System.IO.Path.GetFileNameWithoutExtension(Device.DeviceType.Icon) + "_white.png";
                 }
@@ -134,7 +140,6 @@ namespace SmartControl.ViewModels
                 {
                     SliderVisibility = true;
                 }
-                Enabled = Device.Enabled;
                 Disabled = !Device.Enabled;
                 DeviceValue = (float)Math.Round(await SmartHubClient.GetLastValue(Device.DeviceId), 1);
             }

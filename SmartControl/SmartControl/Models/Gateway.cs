@@ -9,6 +9,7 @@ namespace SmartControl.Models
     {
         public string GatewayId { get; set; }
         public string RoomId { get; set; }
+        public bool Online { get; set; }
 
         //Navigation Properties
         public ICollection<Device> Devices { get; set; }

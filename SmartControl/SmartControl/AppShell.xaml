@@ -85,9 +85,12 @@
     <FlyoutItem Title="Devices" Icon="icon_devices.png">
         <ShellContent Route="DevicesPage" ContentTemplate="{DataTemplate local:DevicesPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="New Gateway" Icon="icon_devices.png">
+        <ShellContent Route="NewGatewayPage" ContentTemplate="{DataTemplate local:NewGatewayPage}" />
+    </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    <MenuItem Text="Disconnect" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
 
     <!--

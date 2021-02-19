@@ -20,5 +20,7 @@ namespace SmartControl.Services
         Task<float> GetLastValue(string DeviceId);
         Task PutDeviceAsync(Device device);
         Task DeleteDeviceAsync(string deviceId);
+
+        string ConnectionString { get; set; }
     }
 }

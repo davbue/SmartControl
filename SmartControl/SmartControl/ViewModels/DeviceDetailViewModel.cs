@@ -93,7 +93,7 @@ namespace SmartControl.ViewModels
             Disabled = !enabled;
             Device.Enabled = enabled;
             SmartHubClient.PutDeviceAsync(Device);
-            
+
         }
 
         public void ValueChanged(float value)
@@ -117,7 +117,6 @@ namespace SmartControl.ViewModels
                 Id = Device.DeviceId;
                 DeviceName = Device.DeviceName;
                 RoomName = Device.Room.RoomName;
-                IconSource = Device.DeviceType.Icon;
                 if (Device.Enabled)
                 {
                     IconSource = System.IO.Path.GetFileNameWithoutExtension(Device.DeviceType.Icon) + "_white.png";
@@ -134,7 +133,6 @@ namespace SmartControl.ViewModels
                 {
                     SliderVisibility = true;
                 }
-                Enabled = Device.Enabled;
                 Disabled = !Device.Enabled;
                 DeviceValue = await SmartHubClient.GetLastValue(Device.DeviceId);
             }

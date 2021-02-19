@@ -30,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\NewGatewayPage.xaml.cs">
+      <DependentUpon>NewGatewayPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\SensorDetailPage.xaml.cs">
       <DependentUpon>SensorDetailPage.xaml</DependentUpon>
     </Compile>
