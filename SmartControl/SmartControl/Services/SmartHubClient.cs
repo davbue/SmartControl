@@ -25,6 +25,7 @@ namespace SmartControl.Services
             {
                 Xamarin.Forms.Application.Current.Properties["ConnectionString"] = "temp";
             }
+            ConnectionString = "https://192.168.43.173:45455";
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
             client = new RestClient($"{ConnectionString}/api/");
             //client = new RestClient("http://192.168.43.173:45455/api/");

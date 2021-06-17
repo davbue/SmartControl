@@ -133,6 +133,7 @@ namespace SmartControl.ViewModels
                 {
                     SliderVisibility = true;
                 }
+                Enabled = Device.Enabled;
                 Disabled = !Device.Enabled;
                 DeviceValue = await SmartHubClient.GetLastValue(Device.DeviceId);
             }
